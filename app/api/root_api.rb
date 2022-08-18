@@ -6,7 +6,6 @@ class RootAPI < Grape::API
   format :json
 
   namespace :auth do
-    mount Auth::ActiveTokensAPI
     mount Auth::SignInAPI
     mount Auth::SignOutAPI
   end
