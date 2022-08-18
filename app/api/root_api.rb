@@ -8,11 +8,12 @@ class RootAPI < Grape::API
   namespace :auth do
     mount Auth::SignInAPI
     mount Auth::SignOutAPI
+    mount Auth::SignUpAPI
   end
   mount CurrentUserAPI
   mount ProfileAPI
   mount UsersAPI
-  mount WelcomeAPI
+  mount SearchAPI
 
   add_swagger_documentation(
     hide_documentation_path: true,

@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_082414) do
+ActiveRecord::Schema.define(version: 2022_08_18_161822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -36,6 +50,15 @@ ActiveRecord::Schema.define(version: 2020_05_22_082414) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+  end
+
   create_table "authentication_tokens", force: :cascade do |t|
     t.string "token", null: false
     t.bigint "user_id", null: false
@@ -49,6 +72,63 @@ ActiveRecord::Schema.define(version: 2020_05_22_082414) do
     t.index ["user_id"], name: "index_authentication_tokens_on_user_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_categories_on_category_id"
+  end
+
+  create_table "custom_field_values", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "custom_field_id", null: false
+    t.string "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["custom_field_id"], name: "index_custom_field_values_on_custom_field_id"
+    t.index ["item_id", "custom_field_id"], name: "index_custom_field_values_on_item_id_and_custom_field_id", unique: true
+    t.index ["item_id"], name: "index_custom_field_values_on_item_id"
+  end
+
+  create_table "custom_fields", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.string "name", null: false
+    t.string "datatype", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_custom_fields_on_category_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.string "name", null: false
+    t.text "description", null: false
+    t.decimal "price", precision: 8, scale: 2, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
+  end
+
+  create_table "order_products", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "amount", null: false
+    t.decimal "unit_price", precision: 8, scale: 2, null: false
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -60,4 +140,10 @@ ActiveRecord::Schema.define(version: 2020_05_22_082414) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authentication_tokens", "users"
+  add_foreign_key "categories", "categories"
+  add_foreign_key "custom_field_values", "custom_fields"
+  add_foreign_key "custom_field_values", "items"
+  add_foreign_key "custom_fields", "categories"
+  add_foreign_key "items", "categories"
+  add_foreign_key "orders", "users"
 end
