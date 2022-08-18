@@ -29,6 +29,7 @@ gem 'haml'
 gem 'bcrypt', '~> 3.1.12'
 gem 'dotenv-rails'
 gem 'devise'
+gem 'activeadmin'
 
 # Other
 
