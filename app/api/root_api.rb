@@ -11,8 +11,8 @@ class RootAPI < Grape::API
     mount Auth::SignUpAPI
   end
   mount CurrentUserAPI
+  mount OrdersAPI
   mount ProfileAPI
-  mount UsersAPI
   mount SearchAPI
 
   add_swagger_documentation(
