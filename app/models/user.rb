@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :authentication_tokens, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   before_create :set_username
 

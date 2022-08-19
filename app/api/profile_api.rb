@@ -10,7 +10,7 @@ class ProfileAPI < Grape::API
       headers ApiDescHelper.with_common_headers
     end
     get do
-      { profile: current_user.as_json(only: %i[email username]) }
+      { profile: current_user.as_json(only: %i[email username street zip_code city country phone]) }
     end
 
     desc 'Update' do
@@ -21,6 +21,11 @@ class ProfileAPI < Grape::API
       requires :email, type: String, desc: 'User email'
       optional :password, type: String, desc: 'New password'
       optional :password_confirmation, type: String, desc: 'Confirm new password'
+      optional :street, type: String, desc: 'Street'
+      optional :zip_code, type: String, desc: 'Zip-code'
+      optional :city, type: String, desc: 'City'
+      optional :country, type: String, desc: 'Country'
+      optional :phone, type: String, desc: 'Phone'
     end
     post do
       user = current_user
@@ -35,7 +40,7 @@ class ProfileAPI < Grape::API
 
       if user.update(user_attributes)
         status 200
-        { profile: user.as_json(only: %i[email username]) }
+        { profile: user.as_json(only: %i[email username street zip_code city country phone]) }
       else
         response_json = {
           error_messages: user.errors.messages.transform_values { |value| value.join(', ') }

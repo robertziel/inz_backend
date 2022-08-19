@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_18_161822) do
+ActiveRecord::Schema.define(version: 2022_08_19_172014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,11 @@ ActiveRecord::Schema.define(version: 2022_08_18_161822) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "street", null: false
+    t.string "zip_code", null: false
+    t.string "city", null: false
+    t.string "country", null: false
+    t.string "phone", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -135,6 +140,11 @@ ActiveRecord::Schema.define(version: 2022_08_18_161822) do
     t.string "username", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "street"
+    t.string "zip_code"
+    t.string "city"
+    t.string "country"
+    t.string "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
