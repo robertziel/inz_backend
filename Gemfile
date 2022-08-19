@@ -29,7 +29,6 @@ gem 'haml'
 gem 'bcrypt', '~> 3.1.12'
 gem 'dotenv-rails'
 gem 'devise'
-gem 'activeadmin'
 
 # Other
 
@@ -38,6 +37,9 @@ gem 'draper'
 gem 'gravatar_image_tag'
 gem 'mini_magick'
 gem 'active_model_serializers'
+gem 'activeadmin'
+gem 'active_admin-state_machine'
+gem 'state_machine'
 
 group :development do
   gem 'letter_opener'

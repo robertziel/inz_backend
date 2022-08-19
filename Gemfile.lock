@@ -45,6 +45,10 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_admin-state_machine (1.0.0)
+      activeadmin (~> 2.0)
+      rails (~> 6.0)
+      state_machine
     active_model_serializers (0.10.10)
       actionpack (>= 4.1, < 6.1)
       activemodel (>= 4.1, < 6.1)
@@ -328,6 +332,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    state_machine (1.2.0)
     temple (0.8.2)
     thor (1.0.1)
     thread_safe (0.3.6)
@@ -350,6 +355,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_admin-state_machine
   active_model_serializers
   activeadmin
   bcrypt (~> 3.1.12)
@@ -380,6 +386,7 @@ DEPENDENCIES
   shoulda
   spring
   spring-watcher-listen (~> 2.0.0)
+  state_machine
   tzinfo-data
   web-console (>= 3.3.0)
 

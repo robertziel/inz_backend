@@ -1,6 +1,10 @@
 ActiveAdmin.register Order do
   permit_params :status
 
+  state_action :comfirm
+  state_action :complete
+  state_action :cancel
+
   index do
     selectable_column
     id_column

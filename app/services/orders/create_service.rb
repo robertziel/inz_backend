@@ -14,6 +14,7 @@ module Orders
       @order = user.orders.new(order_params)
       assign_products
       order.assign_attributes(
+        status: :pending,
         total_price: @total_price,
         total_taxed_price: @total_price * ((100.0 + TAX) / 100.0)
       )
