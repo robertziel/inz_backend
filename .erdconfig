@@ -1,0 +1,7 @@
+attributes:
+  - content
+  - foreign_keys
+  - primary_keys
+  - content
+  - timestamps
+disconnected: true
