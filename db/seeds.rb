@@ -7,18 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 emails = [
-  'hello@robertz.co',
-  'test1@robertz.co',
-  'test3@robertz.co',
-  'test4@robertz.co',
-  'test5@robertz.co',
-  'test6@robertz.co',
-  'test7@robertz.co',
-  'test8@robertz.co',
-  'test9@robertz.co',
-  'test10@robertz.co',
-  'test11@robertz.co',
-  'test12@robertz.co',
+  'robert@gmail.co'
 ]
 
 emails.each do |email|
