@@ -48,6 +48,14 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
   gem 'rails-erd'
+  gem 'capistrano'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rvm' # rvm support
+  gem 'capistrano-bundler' # bundle command
+  gem 'capistrano-rails' # assets and migrations
+  gem 'capistrano-faster-assets' # skips assets precompilation if not needed
+  gem 'capistrano3-git-push'
+  gem 'capistrano-git-copy', require: false
 end
 
 group :development, :test do
