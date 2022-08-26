@@ -1,4 +1,6 @@
 class OrdersAPI < Grape::API
+  include Grape::Kaminari
+
   before do
     authenticate!
   end
@@ -8,7 +10,10 @@ class OrdersAPI < Grape::API
       headers ApiDescHelper.with_common_headers
     end
     get do
-      { orders: current_user.orders.as_json(only: %i[email username]) }
+      {
+        count: User.count,
+        orders: current_user.orders.as_json(only: %i[id total_price total_taxed_price status created_at street zip_code city country phone])
+      }
     end
 
     desc 'Create' do
