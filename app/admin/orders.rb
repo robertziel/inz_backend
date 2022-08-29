@@ -47,7 +47,7 @@ ActiveAdmin.register Order do
 
   form do |f|
     f.inputs do
-      f.input :status
+      f.input :status, as: :select, include_blank: false, collection: order.status_transitions.map(&:to) + [order.status]
     end
     f.actions
   end
