@@ -1,5 +1,5 @@
 ActiveAdmin.register Category do
-  permit_params :name, :category_id, custom_fields_attributes: %i[name datatype]
+  permit_params :name, :category_id, custom_fields_attributes: %i[id name datatype _destroy]
 
   index do
     selectable_column

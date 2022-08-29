@@ -4,7 +4,7 @@ class Category < ApplicationRecord
   has_many :custom_fields
   has_many :items
 
-  accepts_nested_attributes_for :custom_fields
+  accepts_nested_attributes_for :custom_fields, allow_destroy: true
 
   scope :head_categories, -> { where(parent: nil) }
 
